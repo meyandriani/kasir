@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37368503-4f38-408b-9773-17de3ad13c04">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tgl" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     detail_beli.`Id_detailBeli` AS detail_beli_Id_detailBeli,
+     detail_beli.`Barang` AS detail_beli_Barang,
+     detail_beli.`Jumlah` AS detail_beli_Jumlah,
+     detail_beli.`Harga` AS detail_beli_Harga,
+     detail_beli.`Sub_Total` AS detail_beli_Sub_Total,
+     detail_beli.`Nota_Beli` AS detail_beli_Nota_Beli,
+     pegawai.`Id_Pegawai` AS pegawai_Id_Pegawai,
+     pegawai.`User` AS pegawai_User,
+     pegawai.`Nama` AS pegawai_Nama,
+     pegawai.`Hak_Akses` AS pegawai_Hak_Akses,
+     pegawai.`No_HP` AS pegawai_No_HP,
+     pegawai.`Password` AS pegawai_Password,
+     pegawai.`Alamat` AS pegawai_Alamat,
+     pembelian.`notabeli` AS pembelian_notabeli,
+     pembelian.`tglbeli` AS pembelian_tglbeli,
+     pembelian.`waktubeli` AS pembelian_waktubeli,
+     pembelian.`keterangan` AS pembelian_keterangan,
+     pembelian.`totalbeli` AS pembelian_totalbeli,
+     pembelian.`bayar` AS pembelian_bayar,
+     pembelian.`jenis` AS pembelian_jenis,
+     pembelian.`Id_Pegawai` AS pembelian_Id_Pegawai
+FROM
+     `pegawai` pegawai INNER JOIN `pembelian` pembelian ON pegawai.`Id_Pegawai` = pembelian.`Id_Pegawai`
+     INNER JOIN `detail_beli` detail_beli ON pembelian.`notabeli` = detail_beli.`Nota_Beli`
+where pembelian.`tglbeli`=$P{tgl}]]>
+	</queryString>
+	<field name="detail_beli_Id_detailBeli" class="java.lang.Integer"/>
+	<field name="detail_beli_Barang" class="java.lang.String"/>
+	<field name="detail_beli_Jumlah" class="java.lang.Integer"/>
+	<field name="detail_beli_Harga" class="java.lang.Integer"/>
+	<field name="detail_beli_Sub_Total" class="java.lang.Integer"/>
+	<field name="detail_beli_Nota_Beli" class="java.lang.Integer"/>
+	<field name="pegawai_Id_Pegawai" class="java.lang.Integer"/>
+	<field name="pegawai_User" class="java.lang.String"/>
+	<field name="pegawai_Nama" class="java.lang.String"/>
+	<field name="pegawai_Hak_Akses" class="java.lang.String"/>
+	<field name="pegawai_No_HP" class="java.lang.String"/>
+	<field name="pegawai_Password" class="java.lang.String"/>
+	<field name="pegawai_Alamat" class="java.lang.String"/>
+	<field name="pembelian_notabeli" class="java.lang.Integer"/>
+	<field name="pembelian_tglbeli" class="java.sql.Date"/>
+	<field name="pembelian_waktubeli" class="java.sql.Time"/>
+	<field name="pembelian_keterangan" class="java.lang.String"/>
+	<field name="pembelian_totalbeli" class="java.lang.Integer"/>
+	<field name="pembelian_bayar" class="java.lang.Integer"/>
+	<field name="pembelian_jenis" class="java.lang.String"/>
+	<field name="pembelian_Id_Pegawai" class="java.lang.Integer"/>
+	<group name="pembelian_tglbeli">
+		<groupExpression><![CDATA[$F{pembelian_tglbeli}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="0526b0b6-5d5a-4738-8df0-9fc8068f653e"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Tanggal]]></text>
+				</staticText>
+				<textField pattern="MM/dd/yyyy">
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="43a6ea9b-5fb8-4ccf-9273-88d65983d36e"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembelian_tglbeli}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="321b1089-f11d-4021-b776-56aa9efaa314"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="pegawai_Nama">
+		<groupExpression><![CDATA[$F{pegawai_Nama}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="d0c626b1-df81-4a94-9023-58313558fbcb"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pegawai_Nama}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="673d3d2d-fd3a-4397-a812-3b1ff307e820"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Nama]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="pembelian_notabeli">
+		<groupExpression><![CDATA[$F{pembelian_notabeli}]]></groupExpression>
+		<groupHeader>
+			<band height="83">
+				<textField>
+					<reportElement x="100" y="0" width="205" height="20" forecolor="#006699" uuid="be5ddd4c-a14d-4ac0-bfdd-65ed59d45ab9"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembelian_notabeli}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="22418b5a-76a4-414e-a962-4ec6c564010b"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Nota]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="410" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c71f7516-482a-497f-80ef-405fcafd6bed"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Waktu]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="h.mm a">
+					<reportElement x="471" y="0" width="84" height="20" uuid="16f7f634-137a-4e8a-9eec-2ea6215f879a"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembelian_waktubeli}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="410" y="20" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4dd46fa1-820b-4f3c-a56b-3e014baa6720"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="471" y="20" width="84" height="20" uuid="e7ce0201-e9c9-41cb-ba6e-a3faa56f84b9"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembelian_totalbeli}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="410" y="40" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8b637576-4e69-4dee-b5cd-f8c3d21f8215"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Bayar]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="471" y="40" width="84" height="20" uuid="079515d4-986b-49b6-9d80-9cda6dac740c"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembelian_bayar}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="20" width="77" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f6d40c8b-8e49-4835-819e-42fa98ee4bdc"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Keterangan]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="77" y="20" width="317" height="20" uuid="32018c10-73b0-4102-ad99-8063b5f85038"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembelian_keterangan}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="40" width="77" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a3f677c9-cda3-43f7-9f58-87bfb4cd8ccf"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Jenis]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="77" y="40" width="61" height="20" uuid="3b12d4cf-b630-4c8e-b641-0c6a5be43eb3"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembelian_jenis}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="60" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4134b8b0-cb2e-473b-9d0c-f5642680820c"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Barang]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="61" y="60" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="14fc4de6-ed18-447b-a29c-e52055655c09"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Harga]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="122" y="60" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a8e3282a-f574-4ab0-9bef-24da9f5f216d"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Jumlah]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="183" y="60" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="99b1a053-87dc-4995-97df-dbd567537bca"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sub.Tot]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="ad7c1ea8-fe2a-4750-843d-46c5f2375f9b"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="d309b1c4-feca-4f0c-8f8b-86239e999a67"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pembelian]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="17a9dcba-2822-45ba-b5d3-2524e5542d74"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="0f987e64-e18e-4128-9d5d-0810139d18f9"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="7a624430-272b-408d-8dc5-9020e65b45b5"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="61" height="20" uuid="9ab71cd3-f814-4530-9619-84b5fee08052"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_beli_Barang}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="61" y="0" width="61" height="20" uuid="fa1b507f-2f2c-48bd-9e7d-6d4caa2d2bc3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_beli_Harga}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="122" y="0" width="61" height="20" uuid="14d6f29f-c656-4587-890c-87f1ca70ebbe"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_beli_Jumlah}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="183" y="0" width="61" height="20" uuid="da5d95a4-cba5-4830-8bea-3272f35f711c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_beli_Sub_Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="97cf3fd7-5988-4bac-9315-cdf06aca4068"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="19a31741-8456-4e17-bd96-f80540d6623c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="823c66d9-56be-435c-b230-5c6333777963"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
